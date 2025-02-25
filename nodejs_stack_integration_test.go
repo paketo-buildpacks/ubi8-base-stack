@@ -14,7 +14,7 @@ import (
 
 	"github.com/paketo-buildpacks/occam"
 	. "github.com/paketo-buildpacks/occam/matchers"
-	utils "github.com/paketo-community/ubi-base-stack/internal/utils"
+	utils "github.com/paketo-buildpacks/ubi8-base-stack/internal/utils"
 )
 
 func testNodejsStackIntegration(t *testing.T, context spec.G, it spec.S) {

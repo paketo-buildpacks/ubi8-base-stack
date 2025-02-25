@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"testing"
 
-	utils "github.com/paketo-community/ubi-base-stack/internal/utils"
+	utils "github.com/paketo-buildpacks/ubi8-base-stack/internal/utils"
 	"github.com/sclevine/spec"
 
 	. "github.com/onsi/gomega"
