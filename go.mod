@@ -1,4 +1,4 @@
-module github.com/paketo-community/ubi-base-stack
+module github.com/paketo-buildpacks/ubi8-base-stack
 
 go 1.24.0
 

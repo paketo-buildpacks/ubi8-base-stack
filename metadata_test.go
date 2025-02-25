@@ -68,7 +68,7 @@ func testMetadata(t *testing.T, context spec.G, it spec.S) {
 					HaveKeyWithValue("io.buildpacks.stack.description", "base build ubi8 image to support buildpacks"),
 					HaveKeyWithValue("io.buildpacks.stack.distro.name", "rhel"),
 					HaveKeyWithValue("io.buildpacks.stack.distro.version", MatchRegexp(`8\.\d+`)),
-					HaveKeyWithValue("io.buildpacks.stack.homepage", "https://github.com/paketo-community/ubi-base-stack"),
+					HaveKeyWithValue("io.buildpacks.stack.homepage", "https://github.com/paketo-buildpacks/ubi8-base-stack"),
 					HaveKeyWithValue("io.buildpacks.stack.maintainer", "Paketo Community"),
 					HaveKeyWithValue("io.buildpacks.stack.metadata", MatchJSON("{}")),
 				))
@@ -115,7 +115,7 @@ func testMetadata(t *testing.T, context spec.G, it spec.S) {
 					HaveKeyWithValue("io.buildpacks.stack.id", "io.buildpacks.stacks.ubi8"),
 					HaveKeyWithValue("io.buildpacks.stack.distro.name", "rhel"),
 					HaveKeyWithValue("io.buildpacks.stack.distro.version", MatchRegexp(`8\.\d+`)),
-					HaveKeyWithValue("io.buildpacks.stack.homepage", "https://github.com/paketo-community/ubi-base-stack"),
+					HaveKeyWithValue("io.buildpacks.stack.homepage", "https://github.com/paketo-buildpacks/ubi8-base-stack"),
 					HaveKeyWithValue("io.buildpacks.stack.maintainer", "Paketo Community"),
 					HaveKeyWithValue("io.buildpacks.stack.metadata", MatchJSON("{}")),
 				))
@@ -150,9 +150,9 @@ func testMetadata(t *testing.T, context spec.G, it spec.S) {
 
 				Expect(image).To(HaveFileWithContent("/etc/os-release", SatisfyAll(
 					ContainLines(MatchRegexp(`PRETTY_NAME=\"Red Hat Enterprise Linux 8\.\d+ \(Ootpa\)\"`)),
-					ContainSubstring(`HOME_URL="https://github.com/paketo-community/ubi-base-stack"`),
-					ContainSubstring(`SUPPORT_URL="https://github.com/paketo-community/ubi-base-stack/blob/main/README.md"`),
-					ContainSubstring(`BUG_REPORT_URL="https://github.com/paketo-community/ubi-base-stack/issues/new"`),
+					ContainSubstring(`HOME_URL="https://github.com/paketo-buildpacks/ubi8-base-stack"`),
+					ContainSubstring(`SUPPORT_URL="https://github.com/paketo-buildpacks/ubi8-base-stack/blob/main/README.md"`),
+					ContainSubstring(`BUG_REPORT_URL="https://github.com/paketo-buildpacks/ubi8-base-stack/issues/new"`),
 				)))
 			})
 		}
