@@ -183,16 +183,12 @@ jobs:
 
           exists_previous_stacks_filepath=$(git ls-tree --name-only "$latest_tag_or_commit" "$STACKS_FILEPATH")
 
-          # Remove below line after a release
-          previous_platforms="$(jq -c '[.platforms[] | { name: sub("linux/"; "") , is_new: true }]' $STACKS_FILEPATH )"
-
-          # Uncomment below code after a release
-          # if [[ -n $exists_previous_stacks_filepath ]]; then
-          #   git show "$latest_tag_or_commit:$STACKS_FILEPATH" >./previous_stacks.json
-          #   previous_platforms=$(jq -c '[.platforms[] | { name: sub("linux/"; "") , is_new: false }]' ./previous_stacks.json)
-          # else
-          #   previous_platforms='[{"name": "amd64", "is_new": false}]'
-          # fi
+          if [[ -n $exists_previous_stacks_filepath ]]; then
+            git show "$latest_tag_or_commit:$STACKS_FILEPATH" >./previous_stacks.json
+            previous_platforms=$(jq -c '[.platforms[] | { name: sub("linux/"; "") , is_new: false }]' ./previous_stacks.json)
+          else
+            previous_platforms='[{"name": "amd64", "is_new": false}]'
+          fi
 
           platforms=$(echo "$current_platforms" | jq -c --argjson prev "$previous_platforms" '
               map(
