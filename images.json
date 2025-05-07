@@ -3,7 +3,7 @@
   "receipts_show_limit": 16,
   "platforms": ["linux/amd64", "linux/arm64", "linux/ppc64le", "linux/s390x"],
   "os_codename": "ubi8",
-  "pattern_image_registry_name": "build_image_run_image-os_codename-stack_type",
+  "repo_type": "stack",
   "images": [
     {
       "name": "default",
@@ -16,7 +16,9 @@
       "create_build_image": true,
       "base_build_container_image": "docker://registry.access.redhat.com/ubi8/ubi-minimal",
       "base_run_container_image": "docker://registry.access.redhat.com/ubi8/ubi-minimal",
-      "stack_type": "base"
+      "stack_type": "base",
+      "pattern_image_registry_name": "build_image_run_image-os_codename-stack_type",
+      "pattern_assets_prefix": "os_codename-stack_type-repo_type"
     },
     {
       "name": "java-8",
@@ -27,7 +29,9 @@
       "build_receipt_filename": "build-java-8-receipt.cyclonedx.json",
       "run_receipt_filename": "run-java-8-receipt.cyclonedx.json",
       "base_run_container_image": "docker://registry.access.redhat.com/ubi8/openjdk-8-runtime",
-      "stack_type": "base"
+      "stack_type": "base",
+      "pattern_image_registry_name": "build_image_run_image-os_codename-stack_type",
+      "pattern_assets_prefix": "os_codename-stack_type-repo_type"
     },
     {
       "name": "java-11",
@@ -38,7 +42,9 @@
       "build_receipt_filename": "build-java-11-receipt.cyclonedx.json",
       "run_receipt_filename": "run-java-11-receipt.cyclonedx.json",
       "base_run_container_image": "docker://registry.access.redhat.com/ubi8/openjdk-11-runtime",
-      "stack_type": "base"
+      "stack_type": "base",
+      "pattern_image_registry_name": "build_image_run_image-os_codename-stack_type",
+      "pattern_assets_prefix": "os_codename-stack_type-repo_type"
     },
     {
       "name": "java-17",
@@ -49,7 +55,9 @@
       "build_receipt_filename": "build-java-17-receipt.cyclonedx.json",
       "run_receipt_filename": "run-java-17-receipt.cyclonedx.json",
       "base_run_container_image": "docker://registry.access.redhat.com/ubi8/openjdk-17-runtime",
-      "stack_type": "base"
+      "stack_type": "base",
+      "pattern_image_registry_name": "build_image_run_image-os_codename-stack_type",
+      "pattern_assets_prefix": "os_codename-stack_type-repo_type"
     },
     {
       "name": "java-21",
@@ -60,7 +68,9 @@
       "build_receipt_filename": "build-java-21-receipt.cyclonedx.json",
       "run_receipt_filename": "run-java-21-receipt.cyclonedx.json",
       "base_run_container_image": "docker://registry.access.redhat.com/ubi8/openjdk-21-runtime",
-      "stack_type": "base"
+      "stack_type": "base",
+      "pattern_image_registry_name": "build_image_run_image-os_codename-stack_type",
+      "pattern_assets_prefix": "os_codename-stack_type-repo_type"
     },
     {
       "name": "nodejs-16",
@@ -71,7 +81,9 @@
       "build_receipt_filename": "build-nodejs-16-receipt.cyclonedx.json",
       "run_receipt_filename": "run-nodejs-16-receipt.cyclonedx.json",
       "base_run_container_image": "docker://registry.access.redhat.com/ubi8/nodejs-16-minimal",
-      "stack_type": "base"
+      "stack_type": "base",
+      "pattern_image_registry_name": "build_image_run_image-os_codename-stack_type",
+      "pattern_assets_prefix": "os_codename-stack_type-repo_type"
     },
     {
       "name": "nodejs-18",
@@ -82,7 +94,9 @@
       "build_receipt_filename": "build-nodejs-18-receipt.cyclonedx.json",
       "run_receipt_filename": "run-nodejs-18-receipt.cyclonedx.json",
       "base_run_container_image": "docker://registry.access.redhat.com/ubi8/nodejs-18-minimal",
-      "stack_type": "base"
+      "stack_type": "base",
+      "pattern_image_registry_name": "build_image_run_image-os_codename-stack_type",
+      "pattern_assets_prefix": "os_codename-stack_type-repo_type"
     },
     {
       "name": "nodejs-20",
@@ -94,7 +108,9 @@
       "build_receipt_filename": "build-nodejs-20-receipt.cyclonedx.json",
       "run_receipt_filename": "run-nodejs-20-receipt.cyclonedx.json",
       "base_run_container_image": "docker://registry.access.redhat.com/ubi8/nodejs-20-minimal",
-      "stack_type": "base"
+      "stack_type": "base",
+      "pattern_image_registry_name": "build_image_run_image-os_codename-stack_type",
+      "pattern_assets_prefix": "os_codename-stack_type-repo_type"
     }
   ]
 }
