@@ -1000,8 +1000,7 @@ jobs:
         done
 
     - name: Run Acceptance Tests
-      # run: ./scripts/test.sh --validate-stack-builds
-      run: echo "debug skip"
+      run: ./scripts/test.sh --validate-stack-builds
 
   release:
     name: Release
@@ -1141,7 +1140,7 @@ jobs:
           assets="$(jq -c \
             --arg image_filepath "image-files" \
             --arg stack_name "${stack_name}" \
-            --arg asset_prefix "$asset_prefix" \
+            --arg asset_prefix "${asset_prefix}" \
             '. += [
                 {
                   "path": ($image_filepath + "/" + "current-run-image-" + $stack_name + "/run" + ".oci"),
@@ -1151,7 +1150,7 @@ jobs:
               ]' <<<"${assets}")"
 
           # .oci artifacts for the build image
-          if [[ $create_build_image == true ]]; then
+          if [[ "$create_build_image" == "true" ]]; then
             build_image=$(echo "$stack" | jq -r '.build_image')
             if [[ "$pattern_assets_prefix" == "os_name-os_codename-build_image_run_image-stack_type-version-arch" ]]; then
               asset_prefix="${os_name}-${os_codename}-${build_image}-${stack_type}-${version}"
@@ -1228,11 +1227,10 @@ jobs:
                   --arg asset_prefix "$asset_prefix" \
                   --arg arch "${arch_name}" \
                   --arg arch_prefix "${arch_prefix}" \
-                  --arg tag "${version}" \
                   '. += [
                     {
                       "path": ($hash_code_filepath + "/" + "hash-code-current-build-image-"+ $arch + "-" + $stack_name ),
-                      "name": ($asset_prefix + "-" + $tag + $arch_prefix + $build_image + ".oci.sha256"),
+                      "name": ($asset_prefix + "-" + $arch_prefix + $build_image + ".oci.sha256"),
                       "content_type": "text/plain"
                     }
                   ]' <<<"${assets}")"
