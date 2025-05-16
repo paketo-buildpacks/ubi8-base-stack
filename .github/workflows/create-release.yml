@@ -1230,7 +1230,7 @@ jobs:
                   '. += [
                     {
                       "path": ($hash_code_filepath + "/" + "hash-code-current-build-image-"+ $arch + "-" + $stack_name ),
-                      "name": ($asset_prefix + "-" + $arch_prefix + $build_image + ".oci.sha256"),
+                      "name": ($asset_prefix + $arch_prefix + $build_image + ".oci.sha256"),
                       "content_type": "text/plain"
                     }
                   ]' <<<"${assets}")"
