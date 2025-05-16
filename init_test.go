@@ -36,7 +36,6 @@ type StackImages struct {
 
 type ImagesJson struct {
 	SupportUsns       bool          `json:"support_usns"`
-	UpdateOnNewImage  bool          `json:"update_on_new_image"`
 	ReceiptsShowLimit int           `json:"receipts_show_limit"`
 	StackImages       []StackImages `json:"images"`
 }
@@ -97,7 +96,7 @@ func TestAcceptance(t *testing.T) {
 	Expect(json.NewDecoder(integration_json).Decode(&settings.Config)).To(Succeed())
 	Expect(integration_json.Close()).To(Succeed())
 
-	images_json, err := os.Open("./stacks/images.json")
+	images_json, err := os.Open("./images.json")
 	Expect(err).NotTo(HaveOccurred())
 
 	Expect(json.NewDecoder(images_json).Decode(&settings.ImagesJson)).To(Succeed())
