@@ -1,0 +1,23 @@
+id = "io.buildpacks.stacks.ubi8"
+homepage = "https://github.com/paketo-buildpacks/ubi8-base-stack"
+maintainer = "Paketo Community"
+
+platforms = ["linux/amd64", "linux/arm64", "linux/ppc64le", "linux/s390x"]
+
+[build]
+  description = "base build ubi8 image to support buildpacks"
+  dockerfile = "../stack/build.Dockerfile"
+  gid = 1000
+  shell = "/bin/bash"
+  uid = 1002
+
+  [build.args]
+
+[run]
+  description = "ubi8 nodejs-22 image to support buildpacks"
+  dockerfile = "./run.Dockerfile"
+  gid = 1000
+  shell = "/bin/bash"
+  uid = 1001
+
+  [run.args]
