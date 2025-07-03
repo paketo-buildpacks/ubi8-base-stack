@@ -60,6 +60,7 @@ func testBuildpackIntegration(t *testing.T, context spec.G, it spec.S) {
 		})
 
 		for _, stack := range settings.ImagesJson.StackImages {
+			// Create a copy of the stack to get the value instead of a pointer
 			stack := stack
 
 			if stack.Name != "default" {

@@ -1,4 +1,4 @@
-# Paketo ubi8 Full Stack
+# Paketo ubi8 Base Images
 
 ## What is a stack?
 See Paketo's [stacks documentation](https://paketo.io/docs/concepts/stacks/).
