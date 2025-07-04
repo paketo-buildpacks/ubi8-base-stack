@@ -86,12 +86,24 @@
     },
     {
       "name": "nodejs-20",
-      "is_default_run_image": true,
+      "is_default_run_image": false,
       "config_dir": "stacks/stack-nodejs-20",
       "output_dir": "builds/build-nodejs-20",
       "build_image": "build-nodejs-20",
       "run_image": "run-nodejs-20",
       "base_run_container_image": "docker://registry.access.redhat.com/ubi8/nodejs-20-minimal",
+      "stack_type": "base",
+      "pattern_image_registry_name": "build_image_run_image-os_codename-stack_type",
+      "pattern_assets_prefix": "os_codename-stack_type-repo_type-version-arch-build_image_run_image"
+    },
+    {
+      "name": "nodejs-22",
+      "is_default_run_image": true,
+      "config_dir": "stacks/stack-nodejs-22",
+      "output_dir": "builds/build-nodejs-22",
+      "build_image": "build-nodejs-22",
+      "run_image": "run-nodejs-22",
+      "base_run_container_image": "docker://registry.access.redhat.com/ubi8/nodejs-22-minimal",
       "stack_type": "base",
       "pattern_image_registry_name": "build_image_run_image-os_codename-stack_type",
       "pattern_assets_prefix": "os_codename-stack_type-repo_type-version-arch-build_image_run_image"
