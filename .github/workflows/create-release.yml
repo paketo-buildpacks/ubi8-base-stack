@@ -654,6 +654,7 @@ jobs:
     needs: [ create_stack, preparation ]
     runs-on: ubuntu-22.04
     strategy:
+      fail-fast: false
       matrix:
         stacks: ${{ fromJSON(needs.preparation.outputs.stacks) }}
         arch: ${{ fromJSON(needs.preparation.outputs.architectures) }}
