@@ -1,6 +1,6 @@
 id = "io.buildpacks.stacks.ubi8"
 homepage = "https://github.com/paketo-buildpacks/ubi8-base-stack"
-maintainer = "Paketo Community"
+maintainer = "Paketo Buildpacks"
 
 platforms = ["linux/amd64", "linux/arm64", "linux/ppc64le", "linux/s390x"]
 
