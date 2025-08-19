@@ -69,7 +69,7 @@ func testMetadata(t *testing.T, context spec.G, it spec.S) {
 					HaveKeyWithValue("io.buildpacks.stack.distro.name", "rhel"),
 					HaveKeyWithValue("io.buildpacks.stack.distro.version", MatchRegexp(`8\.\d+`)),
 					HaveKeyWithValue("io.buildpacks.stack.homepage", "https://github.com/paketo-buildpacks/ubi8-base-stack"),
-					HaveKeyWithValue("io.buildpacks.stack.maintainer", "Paketo Community"),
+					HaveKeyWithValue("io.buildpacks.stack.maintainer", "Paketo Buildpacks"),
 					HaveKeyWithValue("io.buildpacks.stack.metadata", MatchJSON("{}")),
 				))
 
@@ -116,7 +116,7 @@ func testMetadata(t *testing.T, context spec.G, it spec.S) {
 					HaveKeyWithValue("io.buildpacks.stack.distro.name", "rhel"),
 					HaveKeyWithValue("io.buildpacks.stack.distro.version", MatchRegexp(`8\.\d+`)),
 					HaveKeyWithValue("io.buildpacks.stack.homepage", "https://github.com/paketo-buildpacks/ubi8-base-stack"),
-					HaveKeyWithValue("io.buildpacks.stack.maintainer", "Paketo Community"),
+					HaveKeyWithValue("io.buildpacks.stack.maintainer", "Paketo Buildpacks"),
 					HaveKeyWithValue("io.buildpacks.stack.metadata", MatchJSON("{}")),
 				))
 
