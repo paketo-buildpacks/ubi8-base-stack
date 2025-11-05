@@ -2,7 +2,7 @@ name: Create Release
 
 on:
   schedule:
-    - cron: '27 2,14 * * *'  # daily at 02:27 and 14:27 UTC
+    - cron: '36 0,12 * * *'  # daily at 00:36 and 12:36 UTC
   push:
     branches:
     - main
@@ -44,7 +44,7 @@ jobs:
       support_usns: ${{ steps.polling-os-type.outputs.support_usns }}
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0  # gets full history
 
@@ -523,7 +523,7 @@ jobs:
       stack_files_changed: ${{ steps.compare.outputs.stack_files_changed }}
     steps:
     - name: Checkout With History
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         fetch-depth: 0  # gets full history
 
@@ -589,7 +589,7 @@ jobs:
         stacks: ${{ fromJSON(needs.preparation.outputs.stacks) }}
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     # https://github.com/docker/setup-qemu-action
     - name: Set up QEMU
@@ -660,7 +660,7 @@ jobs:
         arch: ${{ fromJSON(needs.preparation.outputs.architectures) }}
     steps:
     - name: Checkout With History
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         fetch-depth: 0  # gets full history
 
@@ -898,7 +898,7 @@ jobs:
         echo "run_image=${run_image}" >> "$GITHUB_OUTPUT"
 
     - name: Create Release Notes per Arch and per Stack
-      id: notes_arc_stack
+      id: notes_arch_stack
       uses: paketo-buildpacks/github-config/actions/stack/release-notes@main
       with:
         build_image: ${{ steps.registry_names.outputs.build_image }}
@@ -910,7 +910,7 @@ jobs:
         run_packages_modified: "/github/workspace/${{ env.RUN_DIFF_MODIFIED_FILENAME }}"
         run_packages_removed_with_force: "/github/workspace/${{ env.RUN_DIFF_REMOVED_FILENAME }}"
         supports_usns: ${{ needs.preparation.outputs.support_usns }}
-        patched_usns: ${{ needs.get-usns.outputs.usns }}
+        patched_usns: ${{ steps.get-usns.outputs.usns }}
         release_body_file: "${{ matrix.arch.name }}-${{ matrix.stacks.name }}-release-notes.md"
 
     - name: Upload ${{ matrix.arch.name }} release notes file for stack ${{ matrix.stacks.name }}
@@ -974,13 +974,13 @@ jobs:
     if: ${{ !cancelled() && !failure() && needs.create_stack.result != 'skipped' }}
     runs-on: ubuntu-24.04
     steps:
-    - name: Setup Go
-      uses: actions/setup-go@v5
-      with:
-        go-version: stable
-
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
+
+    - name: Setup Go
+      uses: actions/setup-go@v6
+      with:
+        go-version-file: go.mod
 
     - name: Download Build Image(s)
       uses: actions/download-artifact@v4
@@ -1026,7 +1026,7 @@ jobs:
         printf "Force Release: %s\n" "${{ github.event.inputs.force }}"
 
     - name: Checkout With History
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         fetch-depth: 0  # gets full history
 
