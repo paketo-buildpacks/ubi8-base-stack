@@ -107,6 +107,17 @@
       "stack_type": "base",
       "pattern_image_registry_name": "build_image_run_image-os_codename-stack_type",
       "pattern_assets_prefix": "os_codename-stack_type-repo_type-version-arch-build_image_run_image"
+    },
+    {
+      "name": "nodejs-24",
+      "config_dir": "stacks/stack-nodejs-24",
+      "output_dir": "builds/build-nodejs-24",
+      "build_image": "build-nodejs-24",
+      "run_image": "run-nodejs-24",
+      "base_run_container_image": "docker://registry.access.redhat.com/ubi8/nodejs-24-minimal",
+      "stack_type": "base",
+      "pattern_image_registry_name": "build_image_run_image-os_codename-stack_type",
+      "pattern_assets_prefix": "os_codename-stack_type-repo_type-version-arch-build_image_run_image"
     }
   ]
 }
