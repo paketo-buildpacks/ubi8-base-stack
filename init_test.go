@@ -9,7 +9,6 @@ import (
 	"time"
 
 	"github.com/paketo-buildpacks/occam"
-	utils "github.com/paketo-buildpacks/ubi8-base-stack/internal/utils"
 	"github.com/sclevine/spec"
 	"github.com/sclevine/spec/report"
 
@@ -38,12 +37,6 @@ type ImagesJson struct {
 	SupportUsns       bool          `json:"support_usns"`
 	ReceiptsShowLimit int           `json:"receipts_show_limit"`
 	StackImages       []StackImages `json:"images"`
-}
-
-var builder struct {
-	imageUrl      string
-	buildImageUrl string
-	runImageUrl   string
 }
 
 var settings struct {
@@ -81,8 +74,6 @@ func TestAcceptance(t *testing.T) {
 
 	var err error
 	Expect := NewWithT(t).Expect
-
-	docker := occam.NewDocker()
 
 	RegistryUrl = os.Getenv("REGISTRY_URL")
 	Expect(RegistryUrl).NotTo(Equal(""))
@@ -142,13 +133,6 @@ func TestAcceptance(t *testing.T) {
 		Execute(settings.Config.GoDist)
 	Expect(err).NotTo(HaveOccurred())
 
-	builder.buildImageUrl, builder.runImageUrl, builder.imageUrl, err = utils.GenerateBuilder(
-		filepath.Join(root, DefaultStack.OutputDir, "build.oci"),
-		filepath.Join(root, DefaultStack.OutputDir, "run.oci"),
-		RegistryUrl,
-	)
-	Expect(err).NotTo(HaveOccurred())
-
 	SetDefaultEventuallyTimeout(120 * time.Second)
 
 	suite := spec.New("Acceptance", spec.Report(report.Terminal{}), spec.Parallel())
@@ -156,14 +140,6 @@ func TestAcceptance(t *testing.T) {
 	suite("NodejsStackIntegration", testNodejsStackIntegration)
 	suite("buildpackIntegration", testBuildpackIntegration)
 	suite.Run(t)
-
-	/** Cleanup **/
-	lifecycleImageID, err := utils.GetLifecycleImageID(docker, builder.imageUrl)
-	Expect(err).NotTo(HaveOccurred())
-
-	err = utils.RemoveImages(docker, []string{lifecycleImageID, builder.runImageUrl, builder.imageUrl})
-	Expect(err).NotTo(HaveOccurred())
-
 }
 
 func getDefaultStack(stackImages []StackImages) StackImages {
