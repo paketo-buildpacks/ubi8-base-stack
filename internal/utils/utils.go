@@ -35,11 +35,19 @@ func GenerateBuilder(buildImage string, runImage string, registryUrl string) (bu
 	builderConfigFilepath := builderConfigFile.Name()
 
 	_, err = fmt.Fprintf(builderConfigFile, `
+			description= "UBI 8 base builder"
+			[build]
+			  image = "%s:latest"
+
+			[run]
+				[[run.images]]
+					image = "%s:latest"
+
 			[stack]
 			  id = "io.buildpacks.stacks.ubi8"
 			  build-image = "%s:latest"
 			  run-image = "%s:latest"
-			`, buildImageUrl, runImageUrl)
+			`, buildImageUrl, runImageUrl, buildImageUrl, runImageUrl)
 
 	if err != nil {
 		return "", "", "", err
