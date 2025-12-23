@@ -98,7 +98,6 @@
     },
     {
       "name": "nodejs-22",
-      "is_default_run_image": true,
       "config_dir": "stacks/stack-nodejs-22",
       "output_dir": "builds/build-nodejs-22",
       "build_image": "build-nodejs-22",
@@ -110,6 +109,7 @@
     },
     {
       "name": "nodejs-24",
+      "is_default_run_image": true,
       "config_dir": "stacks/stack-nodejs-24",
       "output_dir": "builds/build-nodejs-24",
       "build_image": "build-nodejs-24",
