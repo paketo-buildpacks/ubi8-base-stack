@@ -1,6 +1,6 @@
 module github.com/paketo-buildpacks/ubi8-base-stack
 
-go 1.25.6
+go 1.25.7
 
 require (
 	github.com/google/go-containerregistry v0.20.2
