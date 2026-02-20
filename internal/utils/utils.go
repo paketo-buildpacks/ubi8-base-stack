@@ -2,7 +2,6 @@ package utils
 
 import (
 	"bytes"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -116,51 +115,4 @@ func RemoveImages(docker occam.Docker, imageIDs []string) error {
 	}
 
 	return nil
-}
-
-func GetLifecycleImageID(docker occam.Docker, builderImageUrl string) (lifecycleImageID string, err error) {
-
-	lifecycleVersion, err := GetLifecycleVersion(builderImageUrl)
-	if err != nil {
-		return "", err
-	}
-
-	lifecycleImageID = fmt.Sprintf("buildpacksio/lifecycle:%s", lifecycleVersion)
-
-	return lifecycleImageID, nil
-}
-
-type Builder struct {
-	LocalInfo struct {
-		Lifecycle struct {
-			Version string `json:"version"`
-		} `json:"lifecycle"`
-	} `json:"remote_info"`
-}
-
-func GetLifecycleVersion(builderUrl string) (string, error) {
-	buf := bytes.NewBuffer(nil)
-	pack := pexec.NewExecutable("pack")
-	err := pack.Execute(pexec.Execution{
-		Stdout: buf,
-		Stderr: buf,
-		Args: []string{
-			"builder",
-			"inspect",
-			builderUrl,
-			"-o",
-			"json",
-		},
-	})
-
-	if err != nil {
-		return "", err
-	}
-
-	var builder Builder
-	err = json.Unmarshal([]byte(buf.String()), &builder)
-	if err != nil {
-		return "", err
-	}
-	return builder.LocalInfo.Lifecycle.Version, nil
 }
